@@ -41,9 +41,18 @@ def plot_regression(df, slope, inter):
     plt.legend()
     plt.show()
 
+def predict(slope, inter, x):
+    n = len(x)
+    y = []
+    for i in range(n):
+        y.append(slope * x[i] + inter)
+    return y
 
 if __name__ == "__main__":
     df = pd.read_csv('Linear_Regression\data\score.csv')
     slope, inter = train_linear_regression(df, learning_rate=0.001, epochs=300)
     print(f"Slope: {slope}, Intercept: {inter}")
     plot_regression(df, slope, inter)
+    x_test = [5, 10, 15]
+    predictions = predict(slope, inter, x_test)
+    print(f"Predictions for {x_test}: {predictions}")
